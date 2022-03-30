@@ -12,25 +12,25 @@ type Service struct {
 	endpoint string
 }
 
-func CreateService(endpoint string) service {
-	return service{
+func CreateService(endpoint string) Service {
+	return Service{
 		endpoint,
 	}
 }
 
-func (s *service) Get(context context.Context, path string, cookie string) (*http.Response, error) {
+func (s *Service) Get(context context.Context, path string, cookie string) (*http.Response, error) {
 	return s.request(context, "GET", path, nil, cookie)
 }
 
-func (s *service) Post(context context.Context, path string, cookie string, body map[string]string) (*http.Response, error) {
+func (s *Service) Post(context context.Context, path string, cookie string, body map[string]string) (*http.Response, error) {
 	return s.request(context, "POST", path, body, cookie)
 }
 
-func (s *service) Put(context context.Context, path string, cookie string, body map[string]string) (*http.Response, error) {
+func (s *Service) Put(context context.Context, path string, cookie string, body map[string]string) (*http.Response, error) {
 	return s.request(context, "PUT", path, body, cookie)
 }
 
-func (s *service) request(context context.Context, method string, path string, body map[string]string, cookie string) (*http.Response, error) {
+func (s *Service) request(context context.Context, method string, path string, body map[string]string, cookie string) (*http.Response, error) {
 	var data io.Reader
 	if body != nil {
 		jsonD, err := json.Marshal(body)
