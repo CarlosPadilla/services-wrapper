@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-type service struct {
+type Service struct {
 	endpoint string
 }
 
